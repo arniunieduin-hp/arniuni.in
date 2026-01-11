@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification - Arni University</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #ffffff; color: #000; text-align: center; padding: 20px; margin: 0; }
+        .container { max-width: 500px; background: #fff; margin: 20px auto; padding: 30px; border: 2px solid #000; box-shadow: 10px 10px 0px #000; }
+        h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
+        .sub-header { margin-bottom: 25px; font-size: 14px; text-decoration: underline; font-weight: bold; }
+        .enrollment { background: #000; color: #fff; padding: 10px; margin-bottom: 20px; font-size: 16px; font-weight: bold; }
+        input[type="password"] { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #000; box-sizing: border-box; font-size: 16px; text-align: center; outline: none; }
+        button { width: 100%; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; font-size: 16px; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background: #333; }
+        #error { color: #d00; font-weight: bold; margin-top: 15px; display: none; }
+        #pdfContainer { display: none; margin-top: 20px; }
+        iframe { width: 100%; height: 600px; border: 2px solid #000; }
+        /* Simple Security */
+        @media print { body { display: none; } }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="container">
+        <h1>ARNI UNIVERSITY</h1>
+        <div class="sub-header">arniuni.edu.in</div>
+        
+        <div class="enrollment">
+            Enrollment No: AN11CE3408
+        </div>
+
+        <div id="login-form">
+            <input type="password" id="passInput" placeholder="Enter Security Password">
+            <button onclick="verify()">View Document</button>
+            <p id="error">Invalid Password! Try Again.</p>
+        </div>
+
+        <div id="pdfContainer">
+            <p style="font-weight: bold; color: green;">✓ DOCUMENT VERIFIED</p>
+            <iframe id="pdfFrame" src=""></iframe>
+            <p style="font-size: 11px; margin-top: 10px; color: #555;">
+                Security Policy: Download and Printing are disabled for this document.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function verify() {
+            const pass = document.getElementById('passInput').value;
+            const error = document.getElementById('error');
+            const correctPass = "01SAKE11CE3408";
+            
+            // Your Drive PDF Link in Preview Mode
+            const pdfUrl = "https://drive.google.com/file/d/1q5za3Tz6GVImqKTZj8PGPwyHhJO56_3I/preview";
+
+            if (pass === correctPass) {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('pdfContainer').style.display = 'block';
+                document.getElementById('pdfFrame').src = pdfUrl;
+            } else {
+                error.style.display = 'block';
+                document.getElementById('passInput').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
